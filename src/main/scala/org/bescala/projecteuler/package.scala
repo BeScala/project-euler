@@ -110,4 +110,21 @@ package object projecteuler {
     if ( pentaNum(n) == penta) Some(n) else None
   }
 
+  def pack[T](l: Seq[T]): Seq[Seq[T]] = {
+    @annotation.tailrec
+    def pack_(l: Seq[T], acc: Seq[Seq[T]]): Seq[Seq[T]] = {
+      l match {
+        case Nil     => acc
+        case x +: xs =>
+          val (hl, tl) = l span(elem => x == elem)
+          pack_(tl, hl +: acc)
+      }
+    }
+
+    pack_(l, Seq.empty[Seq[T]]).reverse
+  }
+
+  def encode[T](l: Seq[T]): Seq[(T, Int)] = {
+    pack(l) map (x => (x.head, x.length))
+  }
 }
