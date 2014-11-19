@@ -1,13 +1,13 @@
 package org.bescala.projecteuler
 
 import org.scalatest._
-import org.scalatest.events.{TestPending, TestFailed, TestIgnored, Event}
 
 class EulerSuite extends FunSuite {
 
   def euler(problem:EulerProblem)(solution: => Long) : Unit = {
     test(problem.description) {
       info("------------------------------------------------------")
+      info(problem.description)
       val result = solution
       val success = problem.checkResult(result)
       if (success) {
