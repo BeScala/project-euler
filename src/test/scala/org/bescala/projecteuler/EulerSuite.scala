@@ -5,9 +5,14 @@ import org.scalatest._
 class EulerSuite extends FunSuite {
 
   def euler(problem:EulerProblem)(solution: => Long) : Unit = {
-    test(problem.description) {
+    test(s"problem - ${problem.number}") {
+      info("")
+      info("Description:")
+      problem.description.trim.split("\r\n|\r|\n").foreach { line =>
+        info(s"  $line")
+      }
       info("------------------------------------------------------")
-      info(problem.description)
+      info("")
       val result = solution
       val success = problem.checkResult(result)
       if (success) {
@@ -15,10 +20,9 @@ class EulerSuite extends FunSuite {
       } else {
         fail(s"Your solution yields result: $result, but this is not the correct answer!!!")
       }
-      info("------------------------------------------------------")
+      info("")
     }
   }
 
   def  TODO : Long = throw new TestPendingException
-
 }

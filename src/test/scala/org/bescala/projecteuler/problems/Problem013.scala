@@ -1,29 +1,20 @@
-package org.bescala.projecteuler
+package org.bescala.projecteuler.problems
 
-/** Problem 13 - Large sum
+import org.bescala.projecteuler.EulerSuite
+import org.bescala.projecteuler.ProjectEuler._
 
-  Work out the first ten digits of the sum of the following one-hundred 50-digit numbers (see val BigNumbers below)
+class Problem013 extends EulerSuite {
 
-  */
-
-object Large_Sum {
-  import Large_Sum_Numbers._
-
-  // TODO: Calculate solution of listed problem and assign it to variable 'solution'
-  val solution = {
-    ???
+  /**
+   * Work out the first ten digits of the sum of the following
+   * one-hundred 50-digit numbers (see bigNumbers below)
+   */
+  euler(problem(13)) {
+    TODO
   }
-}
 
-object P013_Large_Sum extends App {
-  import Large_Sum._
 
-  println(solution)
-}
-
-object Large_Sum_Numbers {
-
-  val BigNumbers = Vector (
+  def bigNumbers = Vector (
     "37107287533902102798797998220837590246510135740250",
     "46376937677490009712648124896970078050417018260538",
     "74324986199524741059474233309513058123726617309629",
@@ -124,4 +115,5 @@ object Large_Sum_Numbers {
     "72107838435069186155435662884062257473692284509516",
     "20849603980134001723930671666823555245252804609722",
     "53503534226472524250874054075591789781264330331690")
+
 }

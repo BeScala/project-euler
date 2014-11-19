@@ -1,4 +1,6 @@
-addCommandAlias("euler", "~test-only org.bescala.projecteuler.Euler")
+addCommandAlias("euler-all", "~ ;eval \"\\u001B[2J\\u001B[0\\u003B0H\" ;test-only org.bescala.projecteuler.Euler")
+
+addCommandAlias("euler", "~ ;eval \"\\u001B[2J\\u001B[0\\u003B0H\" ;test-only ")
 
 name := """project-euler-scala"""
 

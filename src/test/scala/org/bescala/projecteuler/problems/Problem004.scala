@@ -15,7 +15,7 @@ class Problem004 extends EulerSuite {
    * Note: for 5 digit numbers
    * Largest palindrome is 9966006699 = 99681 * 99979 (Time to find: 669.271)
    */
-  euler(problem004) {
+  euler(problem(4)) {
     TODO
   }
 
