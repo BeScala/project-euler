@@ -16,7 +16,7 @@ run command 'euler *ProblemXXX' or 'euler-all'
 (where XXX is to be replaced by the problem number)
 
 To start, you can run:
-sbt "euler *Problem001"
+sbt "euler *Problem001"  
 (NOTE: problem numbers are left-padded with 0 up to 3 digits)
 
 The problem/test will run in continuous mode.
