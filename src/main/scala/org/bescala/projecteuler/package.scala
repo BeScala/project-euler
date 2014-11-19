@@ -4,6 +4,12 @@ package org.bescala
  * Created by ericloots on 16/11/14.
  */
 package object projecteuler {
+
+  object Integers {
+    private def nextInt(n: Int): Stream[Int] = n #:: nextInt(n + 1)
+    lazy val positiveIntegers: Stream[Int] = 1 #:: nextInt(2)
+  }
+
   case class PrimeFactors(pf: Vector[Int])
 
   def fact(n: Int): Long = {
@@ -61,6 +67,7 @@ package object projecteuler {
             if (start % i == 0) false else (chk_(i - 1))
           }
         }
+        //println(s"Check prime($s)")
         chk_(s)
       }
     }
@@ -98,16 +105,42 @@ package object projecteuler {
     genIter(1, Vector[Int]())
   }
 
-  def pentaNum(n: Long): Long = n * (3 * n - 1) / 2
+  def triangleNum(n: Long): Long = n * (n + 1) / 2
 
-  def isPentaNum(penta: Long): Boolean = {
-    val n = math.sqrt(penta * 2 / 3).ceil.toLong
-    pentaNum(n) == penta
+  def isTriangleNum(triangle: Long): Boolean = {
+    if ( triangle == 1 ) true
+    else {
+      val n = math.sqrt(triangle * 2).floor.toLong
+      triangleNum(n) == triangle
+    }
   }
 
-  def pentaNumIndex(penta: Long): Option[Long] = {
-    val n = math.sqrt(penta * 2 / 3).ceil.toLong
-    if ( pentaNum(n) == penta) Some(n) else None
+  def pentagonalNum(n: Long): Long = n * (3 * n - 1) / 2
+
+  def isPentagonalNum(penta: Long): Boolean = {
+    if ( penta == 1 ) true
+    else {
+      val n = math.sqrt(penta * 2 / 3).ceil.toLong
+      pentagonalNum(n) == penta
+    }
+  }
+
+  def pentagonalNumIndex(penta: Long): Option[Long] = {
+    if (penta == 1 ) Some(1L)
+    else {
+      val n = math.sqrt(penta * 2 / 3).ceil.toLong
+      if (pentagonalNum(n) == penta) Some(n) else None
+    }
+  }
+
+  def hexagonalNum(n: Long): Long = n * (2 * n - 1)
+
+  def isHexagonalNum(hexa: Long): Boolean = {
+    if ( hexa == 1 ) true
+    else {
+      val n = math.sqrt(hexa / 2).ceil.toLong
+      hexagonalNum(n) == hexa
+    }
   }
 
   def pack[T](l: Seq[T]): Seq[Seq[T]] = {
@@ -115,9 +148,10 @@ package object projecteuler {
     def pack_(l: Seq[T], acc: Seq[Seq[T]]): Seq[Seq[T]] = {
       l match {
         case Nil     => acc
-        case x +: xs =>
+        case x +: xs => {
           val (hl, tl) = l span(elem => x == elem)
           pack_(tl, hl +: acc)
+        }
       }
     }
 
