@@ -17,10 +17,16 @@ class EulerSuite extends FunSuite {
       }
       info("------------------------------------------------------")
       info("")
+      val t0 = System.nanoTime()
       val result = solution
-      val success = problem.checkResult(result)
-      if (success) {
-        info(s"your solution: $result")
+      val t1 = System.nanoTime()
+
+      val elapsedTime = t1 - t0
+      val elapsedTimeSec = elapsedTime / 1000000000.0
+      info(s"Elapsed time: ${t1 - t0}ns - ${elapsedTimeSec}s")
+
+      if (problem.checkResult(result)) {
+        info(s"Your solution: $result")
       } else {
         fail(s"Your solution yields result: $result, but this is not the correct answer!!!")
       }
@@ -28,5 +34,5 @@ class EulerSuite extends FunSuite {
     }
   }
 
-  def  TODO : Long = throw new TestPendingException
+  def  TODO : Nothing = throw new TestPendingException
 }
