@@ -1,7 +1,6 @@
 package org.bescala.projecteuler.problems
 
 import org.bescala.projecteuler.{EulerProblem, EulerSuite}
-import org.bescala.projecteuler.ProjectEuler._
 
 class Problem000 extends EulerSuite {
 

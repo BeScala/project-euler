@@ -4,8 +4,8 @@ import org.scalatest._
 
 class EulerSuite extends FunSuite {
 
-  def euler(problem:EulerProblem)(solution: => Long) : Unit = {
-    test(s"problem - ${problem.number}") {
+  def euler(problem:EulerProblem, problemName: Option[String] = None)(solution: => Long) : Unit = {
+    test(problemName.getOrElse(s"problem - ${problem.number}")) {
       info("")
       info("Description:")
       problem.description.trim.split("\r\n|\r|\n").foreach { line =>
