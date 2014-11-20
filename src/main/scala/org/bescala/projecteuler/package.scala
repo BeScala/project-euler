@@ -1,5 +1,7 @@
 package org.bescala
 
+import scala.annotation.tailrec
+
 /**
  * Created by ericloots on 16/11/14.
  */
@@ -34,7 +36,7 @@ package object projecteuler {
         else if ( curPrime == 2) pf_(curPrime + 1, n, curPrimes) else pf_(curPrime + 2, n, curPrimes)
       }
     }
-    pf_(2, n, Vector.empty[Int])
+    pf_(2, n, Vector.empty)
   }
 
   def primeFactorsBis(n: Long): PrimeFactors = {
@@ -50,7 +52,7 @@ package object projecteuler {
           pf_(curPrime + 2, n, curPrimes)
       }
     }
-    pf_(2, n, PrimeFactors(Vector.empty[Int]))
+    pf_(2, n, PrimeFactors(Vector.empty))
   }
 
   def isPrime(start: Int): Boolean = {
@@ -64,7 +66,7 @@ package object projecteuler {
         def chk_(i: Long): Boolean = {
           if (i == 1) true
           else {
-            if (start % i == 0) false else (chk_(i - 1))
+            if (start % i == 0) false else chk_(i - 1)
           }
         }
         //println(s"Check prime($s)")
@@ -87,8 +89,8 @@ package object projecteuler {
   def sumOfDivisors(n: Int): Int = divisors(n).sum
 
   @annotation.tailrec
-  def nextPrime(n: Int): Int = {
-    n match {
+  def nextPrime(number: Int): Int = {
+    number match {
       case 0 | 1 => 2
       case 2     => 3
       case n if n % 2 == 0 => if (isPrime(n + 1)) n + 1 else nextPrime(n + 3)
@@ -102,7 +104,7 @@ package object projecteuler {
       val np = nextPrime(curPrime)
       if ( np >= primeCutOff ) primes else genIter(np, primes :+ np)
     }
-    genIter(1, Vector[Int]())
+    genIter(1, Vector.empty)
   }
 
   def triangleNum(n: Long): Long = n * (n + 1) / 2
@@ -148,10 +150,9 @@ package object projecteuler {
     def pack_(l: Seq[T], acc: Seq[Seq[T]]): Seq[Seq[T]] = {
       l match {
         case Nil     => acc
-        case x +: xs => {
+        case x +: xs =>
           val (hl, tl) = l span(elem => x == elem)
           pack_(tl, hl +: acc)
-        }
       }
     }
 
