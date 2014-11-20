@@ -21,4 +21,10 @@ class Problem000 extends EulerSuite {
   euler(demoProblem) {
     (1 to 100).filter( _ % 7 != 0).sum
   }
+
+  euler(demoProblem, "alternative impl") {
+    (1 to 100).filter { x =>
+      x % 7 != 0
+    }.sum
+  }
 }
