@@ -3,7 +3,6 @@ package org.bescala.projecteuler
 import org.scalatest._
 
 class EulerSuite extends FunSuite {
-  // dummy line added
 
   def euler(problem:EulerProblem, alternative: String = "")(solution: => Long) : Unit = {
 
