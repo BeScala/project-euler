@@ -293,17 +293,17 @@ package object projecteuler {
     * Example:
     *
     * {{{
-    *   scala> for ( tnum <- Vector(1 to 10: _*) ) println(triangleNum(tnum))
-    *   1
-    *   3
-    *   6
-    *   10
-    *   15
-    *   21
-    *   28
-    *   36
-    *   45
-    *   55
+    *   scala> for ( n <- Vector(1 to 10: _*) ) println(n + " => " + triangleNum(n))
+    *   1 => 1
+    *   2 => 3
+    *   3 => 6
+    *   4 => 10
+    *   5 => 15
+    *   6 => 21
+    *   7 => 28
+    *   8 => 36
+    *   9 => 45
+    *   10 => 55
     * }}}
     *
     * @param n triangle number index
@@ -331,6 +331,37 @@ package object projecteuler {
     }
   }
 
+  /** If a given number is a triangle number, return its index as an Option, if it isn't return None
+    *
+    * Example:
+    *
+    * {{{
+    *   scala> Vector(1 to 12: _*) foreach(n => println(n + " => " + triangleNumIndex(n)))
+    *   1 => Some(1)
+    *   2 => None
+    *   3 => Some(2)
+    *   4 => None
+    *   5 => None
+    *   6 => Some(3)
+    *   7 => None
+    *   8 => None
+    *   9 => None
+    *   10 => Some(4)
+    *   11 => None
+    *   12 => None
+    * }}}
+    *
+    * @param triangle Number for which to calculate its pentagonal number index
+    * @return Some(n) if penta is a pentagonal number, None otherwise
+    */
+  def triangleNumIndex(triangle: Long): Option[Long] = {
+    if (triangle == 1 ) Some(1L)
+    else {
+      val n = math.sqrt(triangle * 2).floor.toLong
+      if (triangleNum(n) == triangle) Some(n) else None
+    }
+  }  
+  
   /** Calculates the n-th pentagonal number
     *
     * the n-th (n >= 1) pentagonal number is calculated as n * (3 * n - 1) / 2
@@ -338,17 +369,17 @@ package object projecteuler {
     * Example:
     *
     * {{{
-    *   scala> for ( pnum <- Vector(1 to 10: _*) ) println(pentagonalNum(pnum))
-    *   1
-    *   5
-    *   12
-    *   22
-    *   35
-    *   51
-    *   70
-    *   92
-    *   117
-    *   145
+    *   scala> for ( n <- Vector(1 to 10: _*) ) println(n + " => " + pentagonalNum(n))
+    *   1 => 1
+    *   2 => 5
+    *   3 => 12
+    *   4 => 22
+    *   5 => 35
+    *   6 => 51
+    *   7 => 70
+    *   8 => 92
+    *   9 => 117
+    *   10 => 145
     * }}}
     *
     * @param n pentagonal number index
@@ -357,10 +388,16 @@ package object projecteuler {
   def pentagonalNum(n: Long): Long = n * (3 * n - 1) / 2
 
   /** Check if a given number is a pentagonal number
-   *
-   * @param penta number to check
-   * @return true if given number is a pentagonal number, false otherwise
-   */
+    *
+    * Example:
+    *
+    * {{{
+    *   scala> Vector(1 to 55: _*) filter (isPentagonalNum(_))
+    *   res0: scala.collection.immutable.Vector[Int] = Vector(1, 5, 12, 22, 35, 51)
+    * }}}
+    * @param penta number to check
+    * @return true if given number is a pentagonal number, false otherwise
+    */
   def isPentagonalNum(penta: Long): Boolean = {
     if ( penta == 1 ) true
     else {
@@ -374,23 +411,23 @@ package object projecteuler {
     * Example:
     *
     * {{{
-    *   scala> Vector(1 to 12: _*) foreach(n => println(pentagonalNumIndex(n)))
-    *   Some(1)
-    *   None
-    *   None
-    *   None
-    *   Some(2)
-    *   None
-    *   None
-    *   None
-    *   None
-    *   None
-    *   None
-    *   Some(3)
+    *   scala> Vector(1 to 12: _*) foreach(n => println(n + " => " + pentagonalNumIndex(n)))
+    *   1 => Some(1)
+    *   2 => None
+    *   3 => None
+    *   4 => None
+    *   5 => Some(2)
+    *   6 => None
+    *   7 => None
+    *   8 => None
+    *   9 => None
+    *   10 => None
+    *   11 => None
+    *   12 => Some(3)
     * }}}
     *
     * @param penta Number for which to calculate its pentagonal number index
-    * @return Some(n) is penta is a pentagonal number, None otherwise
+    * @return Some(n) if penta is a pentagonal number, None otherwise
     */
   def pentagonalNumIndex(penta: Long): Option[Long] = {
     if (penta == 1 ) Some(1L)
@@ -401,24 +438,81 @@ package object projecteuler {
   }
 
   /** Calculates the n-th hexagonal number
-   *
-   * the n-th (n >= 1) pentagonal number is calculated as n * (2 * n - 1)
-   *
-   * @param n hexagonal number index
-   * @return  n-th hexagonal number
-   */
+    *
+    * The n-th (n >= 1) hexagonal number is calculated as n * (2 * n - 1)
+    *
+    * Example:
+    *
+    *{{{
+    *   scala> scala> for ( n <- Vector(1 to 10: _*) ) println(n + " => " + hexagonalNum(n))
+    *   1 => 1
+    *   2 => 6
+    *   3 => 15
+    *   4 => 28
+    *   5 => 45
+    *   6 => 66
+    *   7 => 91
+    *   8 => 120
+    *   9 => 153
+    *   10 => 190
+    *}}}
+    *
+    * @param n hexagonal number index
+    * @return  n-th hexagonal number
+    */
   def hexagonalNum(n: Long): Long = n * (2 * n - 1)
 
   /** Check if a given number is a hexagonal number
-   *
-   * @param hexa number to check
-   * @return true if given number is a hexagonal number, false otherwise
-   */
+    *
+    * Example:
+    *
+    * {{{
+    * scala> Vector(1 to 55: _*) filter (isHexagonalNum(_))
+    * res0: scala.collection.immutable.Vector[Int] = Vector(1, 6, 15, 28, 45)
+    * }}}
+    *
+    * @param hexa number to check
+    * @return true if given number is a hexagonal number, false otherwise
+    */
   def isHexagonalNum(hexa: Long): Boolean = {
     if ( hexa == 1 ) true
     else {
       val n = math.sqrt(hexa / 2).ceil.toLong
       hexagonalNum(n) == hexa
+    }
+  }
+
+  /** If a given number is a hexagonal number, return its index as an Option, if it isn't return None
+    *
+    * Example:
+    *
+    * {{{
+    *   scala> for (n <- 1 to 15) println(n + " => " + hexagonalNumIndex(n))
+    *   1 => Some(1)
+    *   2 => None
+    *   3 => None
+    *   4 => None
+    *   5 => None
+    *   6 => Some(2)
+    *   7 => None
+    *   8 => None
+    *   9 => None
+    *   10 => None
+    *   11 => None
+    *   12 => None
+    *   13 => None
+    *   14 => None
+    *   15 => Some(3)
+    * }}}
+    *
+    * @param hexa Number for which to calculate its pentagonal number index
+    * @return Some(n) if hexa is a hexagonal number, None otherwise
+    */
+  def hexagonalNumIndex(hexa: Long): Option[Long] = {
+    if (hexa == 1 ) Some(1L)
+    else {
+      val n = math.sqrt(hexa / 2).ceil.toLong
+      if (hexagonalNum(n) == hexa) Some(n) else None
     }
   }
 

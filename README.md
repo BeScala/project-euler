@@ -74,4 +74,10 @@ Bellow we see the output of Problem000.
 [info]   +
 ```
 
+###Getting started
 
+When you start working on the given problems, you will soon find out that you need to solve a number of generic problems over and over again. In order to give you a head start, a package object is included in the ```org.bescala.projecteuler``` package that contains a number of useful functions such as a prime number generator, decomposition of a number in prime factors, etc.
+
+We're not forcing you to use these functions: if you don't want to use them, just ignore them and roll your own. If you do, look at the source code, or alternatively, look at the Scaladoc we've generated (doc/index.html).
+
+Note that when you browse the main page, you will only see the object ```Integers```. you can get to the other functions by clicking on package ```org.bescala.projecteuler``` in the left navigation pane.

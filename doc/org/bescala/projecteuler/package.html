@@ -286,8 +286,50 @@ res1: Vector[<span class="std">Int</span>] = Vector(<span class="num">2</span>, 
         <img src="../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Calculates the n-th hexagonal number</p><div class="fullcomment"><div class="comment cmt"><p>Calculates the n-th hexagonal number</p><p>the n-th (n &gt;= 1) pentagonal number is calculated as n * (2 * n - 1)
-</p></div><dl class="paramcmts block"><dt class="param">n</dt><dd class="cmt"><p>hexagonal number index</p></dd><dt>returns</dt><dd class="cmt"><p>n-th hexagonal number
+      <p class="shortcomment cmt">Calculates the n-th hexagonal number</p><div class="fullcomment"><div class="comment cmt"><p>Calculates the n-th hexagonal number</p><p>The n-th (n &gt;= 1) hexagonal number is calculated as n * (2 * n - 1)</p><p>Example:</p><pre>scala&gt; scala&gt; <span class="kw">for</span> ( n <span class="kw">&lt;-</span> Vector(<span class="num">1</span> to <span class="num">10</span>: _*) ) println(n + <span class="lit">" => "</span> + hexagonalNum(n))
+<span class="num">1</span> <span class="kw">=&gt;</span> <span class="num">1</span>
+<span class="num">2</span> <span class="kw">=&gt;</span> <span class="num">6</span>
+<span class="num">3</span> <span class="kw">=&gt;</span> <span class="num">15</span>
+<span class="num">4</span> <span class="kw">=&gt;</span> <span class="num">28</span>
+<span class="num">5</span> <span class="kw">=&gt;</span> <span class="num">45</span>
+<span class="num">6</span> <span class="kw">=&gt;</span> <span class="num">66</span>
+<span class="num">7</span> <span class="kw">=&gt;</span> <span class="num">91</span>
+<span class="num">8</span> <span class="kw">=&gt;</span> <span class="num">120</span>
+<span class="num">9</span> <span class="kw">=&gt;</span> <span class="num">153</span>
+<span class="num">10</span> <span class="kw">=&gt;</span> <span class="num">190</span></pre></div><dl class="paramcmts block"><dt class="param">n</dt><dd class="cmt"><p>hexagonal number index</p></dd><dt>returns</dt><dd class="cmt"><p>n-th hexagonal number
+</p></dd></dl></div>
+    </li><li name="org.bescala.projecteuler#hexagonalNumIndex" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hexagonalNumIndex(hexa:Long):Option[Long]"></a>
+      <a id="hexagonalNumIndex(Long):Option[Long]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hexagonalNumIndex</span><span class="params">(<span name="hexa">hexa: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Long">Long</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.bescala.projecteuler.package@hexagonalNumIndex(hexa:Long):Option[Long]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">If a given number is a hexagonal number, return its index as an Option, if it isn't return None</p><div class="fullcomment"><div class="comment cmt"><p>If a given number is a hexagonal number, return its index as an Option, if it isn't return None</p><p>Example:</p><pre>scala&gt; <span class="kw">for</span> (n <span class="kw">&lt;-</span> <span class="num">1</span> to <span class="num">15</span>) println(n + <span class="lit">" => "</span> + hexagonalNumIndex(n))
+<span class="num">1</span> <span class="kw">=&gt;</span> <span class="std">Some</span>(<span class="num">1</span>)
+<span class="num">2</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">3</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">4</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">5</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">6</span> <span class="kw">=&gt;</span> <span class="std">Some</span>(<span class="num">2</span>)
+<span class="num">7</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">8</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">9</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">10</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">11</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">12</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">13</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">14</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">15</span> <span class="kw">=&gt;</span> <span class="std">Some</span>(<span class="num">3</span>)</pre></div><dl class="paramcmts block"><dt class="param">hexa</dt><dd class="cmt"><p>Number for which to calculate its pentagonal number index</p></dd><dt>returns</dt><dd class="cmt"><p>Some(n) if hexa is a hexagonal number, None otherwise
 </p></dd></dl></div>
     </li><li name="org.bescala.projecteuler#isHexagonalNum" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isHexagonalNum(hexa:Long):Boolean"></a>
@@ -305,9 +347,8 @@ res1: Vector[<span class="std">Int</span>] = Vector(<span class="num">2</span>, 
         <img src="../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Check if a given number is a hexagonal number
-</p><div class="fullcomment"><div class="comment cmt"><p>Check if a given number is a hexagonal number
-</p></div><dl class="paramcmts block"><dt class="param">hexa</dt><dd class="cmt"><p>number to check</p></dd><dt>returns</dt><dd class="cmt"><p>true if given number is a hexagonal number, false otherwise
+      <p class="shortcomment cmt">Check if a given number is a hexagonal number</p><div class="fullcomment"><div class="comment cmt"><p>Check if a given number is a hexagonal number</p><p>Example:</p><pre>scala&gt; Vector(<span class="num">1</span> to <span class="num">55</span>: _*) filter (isHexagonalNum(_))
+res0: scala.collection.immutable.Vector[<span class="std">Int</span>] = Vector(<span class="num">1</span>, <span class="num">6</span>, <span class="num">15</span>, <span class="num">28</span>, <span class="num">45</span>)</pre></div><dl class="paramcmts block"><dt class="param">hexa</dt><dd class="cmt"><p>number to check</p></dd><dt>returns</dt><dd class="cmt"><p>true if given number is a hexagonal number, false otherwise
 </p></dd></dl></div>
     </li><li name="org.bescala.projecteuler#isPentagonalNum" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isPentagonalNum(penta:Long):Boolean"></a>
@@ -325,9 +366,8 @@ res1: Vector[<span class="std">Int</span>] = Vector(<span class="num">2</span>, 
         <img src="../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Check if a given number is a pentagonal number
-</p><div class="fullcomment"><div class="comment cmt"><p>Check if a given number is a pentagonal number
-</p></div><dl class="paramcmts block"><dt class="param">penta</dt><dd class="cmt"><p>number to check</p></dd><dt>returns</dt><dd class="cmt"><p>true if given number is a pentagonal number, false otherwise
+      <p class="shortcomment cmt">Check if a given number is a pentagonal number</p><div class="fullcomment"><div class="comment cmt"><p>Check if a given number is a pentagonal number</p><p>Example:</p><pre>scala&gt; Vector(<span class="num">1</span> to <span class="num">55</span>: _*) filter (isPentagonalNum(_))
+res0: scala.collection.immutable.Vector[<span class="std">Int</span>] = Vector(<span class="num">1</span>, <span class="num">5</span>, <span class="num">12</span>, <span class="num">22</span>, <span class="num">35</span>, <span class="num">51</span>)</pre></div><dl class="paramcmts block"><dt class="param">penta</dt><dd class="cmt"><p>number to check</p></dd><dt>returns</dt><dd class="cmt"><p>true if given number is a pentagonal number, false otherwise
 </p></dd></dl></div>
     </li><li name="org.bescala.projecteuler#isPrime" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isPrime(n:Int):Boolean"></a>
@@ -447,17 +487,17 @@ res0: <span class="std">Seq</span>[<span class="std">Seq</span>[<span class="std
         <img src="../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Calculates the n-th pentagonal number</p><div class="fullcomment"><div class="comment cmt"><p>Calculates the n-th pentagonal number</p><p>the n-th (n &gt;= 1) pentagonal number is calculated as n * (3 * n - 1) / 2</p><p>Example:</p><pre>scala&gt; <span class="kw">for</span> ( pnum <span class="kw">&lt;-</span> Vector(<span class="num">1</span> to <span class="num">10</span>: _*) ) println(pentagonalNum(pnum))
-<span class="num">1</span>
-<span class="num">5</span>
-<span class="num">12</span>
-<span class="num">22</span>
-<span class="num">35</span>
-<span class="num">51</span>
-<span class="num">70</span>
-<span class="num">92</span>
-<span class="num">117</span>
-<span class="num">145</span></pre></div><dl class="paramcmts block"><dt class="param">n</dt><dd class="cmt"><p>pentagonal number index</p></dd><dt>returns</dt><dd class="cmt"><p>n-th pentagonal number
+      <p class="shortcomment cmt">Calculates the n-th pentagonal number</p><div class="fullcomment"><div class="comment cmt"><p>Calculates the n-th pentagonal number</p><p>the n-th (n &gt;= 1) pentagonal number is calculated as n * (3 * n - 1) / 2</p><p>Example:</p><pre>scala&gt; <span class="kw">for</span> ( n <span class="kw">&lt;-</span> Vector(<span class="num">1</span> to <span class="num">10</span>: _*) ) println(n + <span class="lit">" => "</span> + pentagonalNum(n))
+<span class="num">1</span> <span class="kw">=&gt;</span> <span class="num">1</span>
+<span class="num">2</span> <span class="kw">=&gt;</span> <span class="num">5</span>
+<span class="num">3</span> <span class="kw">=&gt;</span> <span class="num">12</span>
+<span class="num">4</span> <span class="kw">=&gt;</span> <span class="num">22</span>
+<span class="num">5</span> <span class="kw">=&gt;</span> <span class="num">35</span>
+<span class="num">6</span> <span class="kw">=&gt;</span> <span class="num">51</span>
+<span class="num">7</span> <span class="kw">=&gt;</span> <span class="num">70</span>
+<span class="num">8</span> <span class="kw">=&gt;</span> <span class="num">92</span>
+<span class="num">9</span> <span class="kw">=&gt;</span> <span class="num">117</span>
+<span class="num">10</span> <span class="kw">=&gt;</span> <span class="num">145</span></pre></div><dl class="paramcmts block"><dt class="param">n</dt><dd class="cmt"><p>pentagonal number index</p></dd><dt>returns</dt><dd class="cmt"><p>n-th pentagonal number
 </p></dd></dl></div>
     </li><li name="org.bescala.projecteuler#pentagonalNumIndex" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="pentagonalNumIndex(penta:Long):Option[Long]"></a>
@@ -475,19 +515,19 @@ res0: <span class="std">Seq</span>[<span class="std">Seq</span>[<span class="std
         <img src="../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">If a given number is a pentagonal number, return its index as an Option, if it isn't return None</p><div class="fullcomment"><div class="comment cmt"><p>If a given number is a pentagonal number, return its index as an Option, if it isn't return None</p><p>Example:</p><pre>scala&gt; Vector(<span class="num">1</span> to <span class="num">12</span>: _*) foreach(n <span class="kw">=&gt;</span> println(pentagonalNumIndex(n)))
-<span class="std">Some</span>(<span class="num">1</span>)
-<span class="std">None</span>
-<span class="std">None</span>
-<span class="std">None</span>
-<span class="std">Some</span>(<span class="num">2</span>)
-<span class="std">None</span>
-<span class="std">None</span>
-<span class="std">None</span>
-<span class="std">None</span>
-<span class="std">None</span>
-<span class="std">None</span>
-<span class="std">Some</span>(<span class="num">3</span>)</pre></div><dl class="paramcmts block"><dt class="param">penta</dt><dd class="cmt"><p>Number for which to calculate its pentagonal number index</p></dd><dt>returns</dt><dd class="cmt"><p>Some(n) is penta is a pentagonal number, None otherwise
+      <p class="shortcomment cmt">If a given number is a pentagonal number, return its index as an Option, if it isn't return None</p><div class="fullcomment"><div class="comment cmt"><p>If a given number is a pentagonal number, return its index as an Option, if it isn't return None</p><p>Example:</p><pre>scala&gt; Vector(<span class="num">1</span> to <span class="num">12</span>: _*) foreach(n <span class="kw">=&gt;</span> println(n + <span class="lit">" => "</span> + pentagonalNumIndex(n)))
+<span class="num">1</span> <span class="kw">=&gt;</span> <span class="std">Some</span>(<span class="num">1</span>)
+<span class="num">2</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">3</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">4</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">5</span> <span class="kw">=&gt;</span> <span class="std">Some</span>(<span class="num">2</span>)
+<span class="num">6</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">7</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">8</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">9</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">10</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">11</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">12</span> <span class="kw">=&gt;</span> <span class="std">Some</span>(<span class="num">3</span>)</pre></div><dl class="paramcmts block"><dt class="param">penta</dt><dd class="cmt"><p>Number for which to calculate its pentagonal number index</p></dd><dt>returns</dt><dd class="cmt"><p>Some(n) if penta is a pentagonal number, None otherwise
 </p></dd></dl></div>
     </li><li name="org.bescala.projecteuler#primeFactors" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="primeFactors(n:Long):Vector[Int]"></a>
@@ -580,17 +620,47 @@ res4: <span class="std">Int</span> = <span class="num">316</span></pre></div><dl
         <img src="../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">Calculates the n-th triangle number</p><div class="fullcomment"><div class="comment cmt"><p>Calculates the n-th triangle number</p><p>the n-th (n &gt;= 1) triangle number is calculated as n * (n + 1) / 2</p><p>Example:</p><pre>scala&gt; <span class="kw">for</span> ( tnum <span class="kw">&lt;-</span> Vector(<span class="num">1</span> to <span class="num">10</span>: _*) ) println(triangleNum(tnum))
-<span class="num">1</span>
-<span class="num">3</span>
-<span class="num">6</span>
-<span class="num">10</span>
-<span class="num">15</span>
-<span class="num">21</span>
-<span class="num">28</span>
-<span class="num">36</span>
-<span class="num">45</span>
-<span class="num">55</span></pre></div><dl class="paramcmts block"><dt class="param">n</dt><dd class="cmt"><p>triangle number index</p></dd><dt>returns</dt><dd class="cmt"><p>n-th triangle number
+      <p class="shortcomment cmt">Calculates the n-th triangle number</p><div class="fullcomment"><div class="comment cmt"><p>Calculates the n-th triangle number</p><p>the n-th (n &gt;= 1) triangle number is calculated as n * (n + 1) / 2</p><p>Example:</p><pre>scala&gt; <span class="kw">for</span> ( n <span class="kw">&lt;-</span> Vector(<span class="num">1</span> to <span class="num">10</span>: _*) ) println(n + <span class="lit">" => "</span> + triangleNum(n))
+<span class="num">1</span> <span class="kw">=&gt;</span> <span class="num">1</span>
+<span class="num">2</span> <span class="kw">=&gt;</span> <span class="num">3</span>
+<span class="num">3</span> <span class="kw">=&gt;</span> <span class="num">6</span>
+<span class="num">4</span> <span class="kw">=&gt;</span> <span class="num">10</span>
+<span class="num">5</span> <span class="kw">=&gt;</span> <span class="num">15</span>
+<span class="num">6</span> <span class="kw">=&gt;</span> <span class="num">21</span>
+<span class="num">7</span> <span class="kw">=&gt;</span> <span class="num">28</span>
+<span class="num">8</span> <span class="kw">=&gt;</span> <span class="num">36</span>
+<span class="num">9</span> <span class="kw">=&gt;</span> <span class="num">45</span>
+<span class="num">10</span> <span class="kw">=&gt;</span> <span class="num">55</span></pre></div><dl class="paramcmts block"><dt class="param">n</dt><dd class="cmt"><p>triangle number index</p></dd><dt>returns</dt><dd class="cmt"><p>n-th triangle number
+</p></dd></dl></div>
+    </li><li name="org.bescala.projecteuler#triangleNumIndex" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="triangleNumIndex(triangle:Long):Option[Long]"></a>
+      <a id="triangleNumIndex(Long):Option[Long]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">triangleNumIndex</span><span class="params">(<span name="triangle">triangle: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Long">Long</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.bescala.projecteuler.package@triangleNumIndex(triangle:Long):Option[Long]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">If a given number is a triangle number, return its index as an Option, if it isn't return None</p><div class="fullcomment"><div class="comment cmt"><p>If a given number is a triangle number, return its index as an Option, if it isn't return None</p><p>Example:</p><pre>scala&gt; Vector(<span class="num">1</span> to <span class="num">12</span>: _*) foreach(n <span class="kw">=&gt;</span> println(n + <span class="lit">" => "</span> + triangleNumIndex(n)))
+<span class="num">1</span> <span class="kw">=&gt;</span> <span class="std">Some</span>(<span class="num">1</span>)
+<span class="num">2</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">3</span> <span class="kw">=&gt;</span> <span class="std">Some</span>(<span class="num">2</span>)
+<span class="num">4</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">5</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">6</span> <span class="kw">=&gt;</span> <span class="std">Some</span>(<span class="num">3</span>)
+<span class="num">7</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">8</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">9</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">10</span> <span class="kw">=&gt;</span> <span class="std">Some</span>(<span class="num">4</span>)
+<span class="num">11</span> <span class="kw">=&gt;</span> <span class="std">None</span>
+<span class="num">12</span> <span class="kw">=&gt;</span> <span class="std">None</span></pre></div><dl class="paramcmts block"><dt class="param">triangle</dt><dd class="cmt"><p>Number for which to calculate its pentagonal number index</p></dd><dt>returns</dt><dd class="cmt"><p>Some(n) if penta is a pentagonal number, None otherwise
 </p></dd></dl></div>
     </li></ol>
             </div>
