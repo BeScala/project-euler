@@ -29,6 +29,49 @@ class Problem001 extends EulerSuite {
   }
 }
 ```
+### Alternative implementations
+You can add alternative implementations for each problem. To do that you need to pass a alternative name for the problem.
+```scala
+class Problem001 extends EulerSuite {
+  euler(problem(1)) {
+    TODO // your first solution goes here
+  }
+  euler(problem(1), "alternative solution") {
+    TODO // your alternative solution goes here
+  }
+}
+```
+
+### Elapsed time
+Time elapsed to run each solution is displayed in nanoseconds and milliseconds. Therefore you can compare the efficiency of different solutions.
+
 
 Problem000.scala contains a demo problem with a solution.
 You can use it as implementation example.
+
+Bellow we see the output of Problem000. 
+```
+[info] Problem000:
+[info] - Problem #0
+[info]   +
+[info]   + Description:
+[info]   +   Find the sum of all numbers from 1 to 100
+[info]   +   that are NOT multiples of 7
+[info]   + ------------------------------------------------------
+[info]   +
+[info]   + Elapsed time: 12578266ns - 0.012578266s
+[info]   + Your solution: 4315
+[info]   +
+[info] - Problem #0 (alternative impl)
+[info]   +
+[info]   + Description:
+[info]   +   Find the sum of all numbers from 1 to 100
+[info]   +   that are NOT multiples of 7
+[info]   + ------------------------------------------------------
+[info]   +
+[info]   + Elapsed time: 7958406ns - 0.007958406s
+[info]   + Your solution: 4315
+[info]   +
+```
+
+
