@@ -1,0 +1,1 @@
+scaladoc -doc-title "Project Euler Scala hacking session helper methods" -doc-version "1.0" -doc-footer "Belgian Scala user group" ../src/main/scala/org/bescala/projecteuler/package.scala
