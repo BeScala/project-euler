@@ -2,8 +2,20 @@ package org.bescala.projecteuler
 
 import org.scalatest._
 
-class EulerSuite extends FunSuite {
+import scala.annotation.tailrec
 
+class EulerSuite extends FunSuite {
+  def toReadableTime(nanos: Long) = {
+    type TimeMeasure = (Long, String)
+    val conversions: Seq[TimeMeasure] = Seq((1000L, "µs"), (1000L, "ms"), (1000L, "s"), (60L, "m"))
+    @tailrec def toReadableTime_(current: TimeMeasure, restConversions: Seq[TimeMeasure] = conversions): TimeMeasure  =
+      if (restConversions.isEmpty || current._1 < restConversions.head._1)
+        current
+      else
+        toReadableTime_((Math.round(current._1.toDouble / restConversions.head._1), restConversions.head._2), restConversions.tail)
+    val converted = toReadableTime_((nanos, "ns"))
+    s"${converted._1}${converted._2}"
+  }
 
   def euler(problem:EulerProblem, alternative: String = "")(solution: => Long) : Unit = {
 
@@ -22,8 +34,7 @@ class EulerSuite extends FunSuite {
       val t1 = System.nanoTime()
 
       val elapsedTime = t1 - t0
-      val elapsedTimeSec = elapsedTime / 1000000000.0
-      info(s"Elapsed time: ${t1 - t0}ns - ${elapsedTimeSec}s")
+      info(s"Elapsed time: ${toReadableTime(elapsedTime)}")
 
       if (problem.checkResult(result)) {
         info(s"Your solution: $result")

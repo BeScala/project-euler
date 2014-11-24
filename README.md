@@ -59,7 +59,7 @@ Bellow we see the output of Problem000.
 [info]   +   that are NOT multiples of 7
 [info]   + ------------------------------------------------------
 [info]   +
-[info]   + Elapsed time: 12578266ns - 0.012578266s
+[info]   + Elapsed time: 13ms
 [info]   + Your solution: 4315
 [info]   +
 [info] - Problem #0 (alternative impl)
@@ -69,7 +69,7 @@ Bellow we see the output of Problem000.
 [info]   +   that are NOT multiples of 7
 [info]   + ------------------------------------------------------
 [info]   +
-[info]   + Elapsed time: 7958406ns - 0.007958406s
+[info]   + Elapsed time: 8ms
 [info]   + Your solution: 4315
 [info]   +
 ```
