@@ -17,4 +17,5 @@ class Problem001 extends EulerSuite {
     (1 until 1000).filter(l => l % 3 == 0 || l % 5 == 0).sum
   }
 
+  // next dd
 }
