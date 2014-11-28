@@ -20,6 +20,7 @@ class Problem001 extends EulerSuite {
   }
 
   euler(problem(1), "tailrecursive with accumulator") {
+    // O(n)
     @tailrec def calculate(n: Int, sum: Long = 0L): Long = {
       if (n >= 1000)
         sum
