@@ -3,6 +3,7 @@ package org.bescala.projecteuler.problems
 
 import org.bescala.projecteuler.EulerSuite
 import org.bescala.projecteuler.ProjectEuler._
+import org.bescala.projecteuler.primeFactors
 
 class Problem005 extends EulerSuite {
 
@@ -32,7 +33,7 @@ class Problem005 extends EulerSuite {
    * 20 = 2 * 2 * 5     // already covered if we cover previous cases
    */
   euler(problem(5)) {
-    TODO
+    (1 to 20).map(primeFactors(_)).reduce((D1, D2) => D1 ++ D2.diff(D1)).product
   }
 
 }
