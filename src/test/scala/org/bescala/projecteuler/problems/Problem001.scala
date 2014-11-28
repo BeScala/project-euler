@@ -16,4 +16,5 @@ class Problem001 extends EulerSuite {
     // we first construct a Range, and then filter O(n), and sum O(n * 8 / 15)
     (1 until 1000).filter(l => l % 3 == 0 || l % 5 == 0).sum
   }
+
 }
