@@ -24,4 +24,24 @@ class Problem001 extends EulerSuite {
      ( count15 * (count15 + 1) * 15 )) / 2
   }
 
+  euler(problem(1), "implicit class showcase") {
+
+    /* Let's add integer extensions as an implicit class show case
+     */
+    implicit class IntegerExtensions(value: Int) {
+
+      /* Returns the sum of integers from 1 to value using mathematical properties.
+       */
+      def sumSuite: Int = value * (value + 1) / 2
+
+      /* Returns the number of multiples of value below a given value
+       */
+      def numberMultiplesBelow(other: Int) = (other-1) / value
+    }
+
+
+    (3.numberMultiplesBelow(1000)).sumSuite * 3 +
+    (5.numberMultiplesBelow(1000)).sumSuite * 5 -
+    (15.numberMultiplesBelow(1000)).sumSuite * 15
+  }
 }
