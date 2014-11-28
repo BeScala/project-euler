@@ -12,6 +12,6 @@ class Problem001 extends EulerSuite {
    * Find the sum of all the multiples of 3 or 5 below 1000.
    */
   euler(problem(1)) {
-    (1 to 1000 ).filter{ x => (x%3==0 || x%5==0)}.sum
+    (1 until 1000 ).filter{ x => (x % 3 == 0 || x % 5 == 0)}.sum
   }
 }
