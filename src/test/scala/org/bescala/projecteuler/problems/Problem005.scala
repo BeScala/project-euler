@@ -36,4 +36,14 @@ class Problem005 extends EulerSuite {
     (1 to 20).map(primeFactors(_)).reduce((D1, D2) => D1 ++ D2.diff(D1)).product
   }
 
+  euler(problem(5), "alternative solution, exploring functional in Scala, but way slower") {
+    def divisible(x: Int)(i:Int): Boolean = (x % i == 0)
+
+    val divFunctions = (1 to 20).map(i => divisible(_: Int)(i))
+
+    var dividends = Stream.from(1)
+    divFunctions.foreach(f => {dividends = dividends.filter(f)})
+    dividends(0)
+  }
+
 }
