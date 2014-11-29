@@ -1,6 +1,6 @@
 package org.bescala.projecteuler.problems
 
-import org.bescala.projecteuler.EulerSuite
+import org.bescala.projecteuler._
 import org.bescala.projecteuler.ProjectEuler._
 
 class Problem010 extends EulerSuite {
@@ -10,6 +10,7 @@ class Problem010 extends EulerSuite {
    * Find the sum of all the primes below two million
    */
   euler(problem(10)) {
-    TODO
+      // the conversion to Long is necessary to avoid overflow
+      Stream.from(2).filter(isPrime).takeWhile(_ < 2000000).map(_.toLong).sum
   }
 }
