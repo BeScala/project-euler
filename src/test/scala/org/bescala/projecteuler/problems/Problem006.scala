@@ -10,6 +10,7 @@ class Problem006 extends EulerSuite {
    * the first one hundred natural numbers and the square of the sum
    */
   euler(problem(6)) {
-    TODO
+        val sum1 = (1 to 100).sum
+        sum1 * sum1 - (1 to 100).map(x => x*x).sum
   }
 }
