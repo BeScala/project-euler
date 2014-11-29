@@ -10,7 +10,7 @@ class Problem013 extends EulerSuite {
    * one-hundred 50-digit numbers (see bigNumbers below)
    */
   euler(problem(13)) {
-    TODO
+      bigNumbers.map(BigInt(_)).sum.toString().substring(0, 10).toLong
   }
 
 
