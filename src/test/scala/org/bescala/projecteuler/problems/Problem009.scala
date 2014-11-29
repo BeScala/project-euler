@@ -31,8 +31,8 @@ class Problem009  extends EulerSuite {
   euler(problem(9)) {
       (for {
           a <- 1 to 999
-          b <- 1 to 999 filter (b1 => a < b1)
-          c <- 1 to 999 filter (c1 => b < c1 && a + b + c1 == 1000 && a*a + b*b == c1*c1)
+          b <- a to 999
+          c <- b to 999 filter (c1 => a + b + c1 == 1000 && a*a + b*b == c1*c1)
       } yield (a * b * c)).head
   }
 }
