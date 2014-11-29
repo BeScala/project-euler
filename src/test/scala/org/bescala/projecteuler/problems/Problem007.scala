@@ -2,6 +2,7 @@ package org.bescala.projecteuler.problems
 
 import org.bescala.projecteuler.EulerSuite
 import org.bescala.projecteuler.ProjectEuler._
+import org.bescala.projecteuler.isPrime
 
 class Problem007 extends EulerSuite {
 
@@ -10,6 +11,6 @@ class Problem007 extends EulerSuite {
    * What is the 10 001st prime number?
    */
   euler(problem(7)) {
-    TODO
+    Stream.from(2).filter(isPrime)(10000)
   }
 }
