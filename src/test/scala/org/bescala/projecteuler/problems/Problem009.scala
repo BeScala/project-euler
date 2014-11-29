@@ -29,6 +29,10 @@ class Problem009  extends EulerSuite {
    *  the numerator -and- 1000^2 - 2000 * b has to be positive
    */
   euler(problem(9)) {
-    TODO
+      (for {
+          a <- 1 to 999
+          b <- 1 to 999 filter (b1 => a < b1)
+          c <- 1 to 999 filter (c1 => b < c1 && a + b + c1 == 1000 && a*a + b*b == c1*c1)
+      } yield (a * b * c)).head
   }
 }
