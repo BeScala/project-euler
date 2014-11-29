@@ -12,6 +12,13 @@ class Problem001 extends EulerSuite {
    * Find the sum of all the multiples of 3 or 5 below 1000.
    */
   euler(problem(1)) {
-    TODO
+    val upperLimit = 1000
+    val divisors = Seq(3,5)
+    Stream.from(1)
+      .takeWhile(i => i < upperLimit)
+      .foldLeft (0) {
+        case (acc, i) if (divisors.exists{ d => (i % d) == 0 }) => acc + i
+        case (acc, _) => acc
+      }
   }
 }
