@@ -4,6 +4,8 @@ package org.bescala.projecteuler.problems
 import org.bescala.projecteuler.EulerSuite
 import org.bescala.projecteuler.ProjectEuler._
 
+import scala.annotation.tailrec
+
 class Problem005 extends EulerSuite {
 
   /**
@@ -31,8 +33,41 @@ class Problem005 extends EulerSuite {
    * 18 = 2 * 3 * 3     // already covered if we cover previous cases
    * 20 = 2 * 2 * 5     // already covered if we cover previous cases
    */
-  euler(problem(5)) {
-    TODO
+  val someSolution = s"some solution for problem ${5}"
+
+  euler(problem(5), someSolution) {
+
+    import math._
+
+    def squareRootOf(z: Int) =
+      round(floor(sqrt(z.toDouble))).toInt
+
+    def isPrime(z: Int): Boolean =
+      (2 to squareRootOf(z)).forall(z % _ != 0)
+
+    def allPrimesTo(z: Int) =
+      (2 to z).filter(isPrime)
+
+    def factorizeAllNumbersTo(z: Int) =
+      (2 to z).map { y =>
+        allPrimesTo(z).map { p =>
+          @tailrec
+          def loop(y: Int)(x: Int): Int =
+            if (y % p != 0) x
+            else loop(y / p)(p * x)
+          loop(y)(1)
+        }
+      }
+
+    def smallestMultipleOfAllNumbersTo(z: Int) =
+      factorizeAllNumbersTo(z).foldLeft(Vector.fill(z)(1)) { (vz, vy) =>
+        vz.zip(vy).map {
+          case (z, y) => max(z, y)
+        }
+      }.foldLeft(1)(_ * _)
+
+    smallestMultipleOfAllNumbersTo(20)
+
   }
 
 }
