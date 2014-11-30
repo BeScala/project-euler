@@ -1,9 +1,9 @@
 package org.bescala.projecteuler.problems
 
+import scala.annotation.tailrec
 
 import org.bescala.projecteuler.EulerSuite
 import org.bescala.projecteuler.ProjectEuler._
-import scala.annotation.tailrec
 
 class Problem005 extends EulerSuite {
 
@@ -33,19 +33,18 @@ class Problem005 extends EulerSuite {
    * 20 = 2 * 2 * 5     // already covered if we cover previous cases
    */
   
+	
 	final def testMultimplesOf20(magicNumber : Int, nrsToDivBy : List[Int], multiplicationFactor : Int): Int = {
-    
-	val hits = nrsToDivBy.filter(x => magicNumber%x == 0)
-	if(hits.size == nrsToDivBy.size){
-	  magicNumber
-	}else{
-	  testMultimplesOf20(20*multiplicationFactor, nrsToDivBy, multiplicationFactor+1)
-	}
-    
-  }
+		if(nrsToDivBy.filter(x => magicNumber%x == 0).size == nrsToDivBy.size){
+	  		magicNumber
+		}else{
+	  		testMultimplesOf20(20*multiplicationFactor, nrsToDivBy, multiplicationFactor+1)
+		}
+  	}
   
   euler(problem(5)) {
-	  testMultimplesOf20(20, List.range(2, 21), 1)
+  
+	testMultimplesOf20(20, List.range(2, 21), 1)
 	  
   }
 
