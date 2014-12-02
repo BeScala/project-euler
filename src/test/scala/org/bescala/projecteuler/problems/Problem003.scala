@@ -70,4 +70,21 @@ class Problem003 extends EulerSuite {
     }
     largestPrimeFactor(600851475143L)
   }
+
+  euler(problem(3), "cfr eloots but no implicit and with 'mem-leaking'") {
+    val allPrimes = PrimeFast.fastPrimes()
+    def largestPrimeFactor(n: Long): Long = {
+      @tailrec def largestPrimeFactor_(n: Long, primesToConsider: Stream[Long]): Long = {
+        val currentPrime = primesToConsider.head
+        if (n == 1)
+          currentPrime
+        else if (n % currentPrime == 0)
+          largestPrimeFactor_(n / currentPrime, primesToConsider)
+        else
+          largestPrimeFactor_(n, primesToConsider.tail)
+      }
+      largestPrimeFactor_(n, allPrimes)
+    }
+    largestPrimeFactor(600851475143L)
+  }
 }
