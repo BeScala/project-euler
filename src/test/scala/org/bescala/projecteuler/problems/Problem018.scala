@@ -38,8 +38,63 @@ class Problem018  extends EulerSuite {
    * However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot
    * be solved by brute force, and requires a clever method! ;o)
    */
-  euler(problem(18)) {
-    TODO
+  val someSpecificSolution = s"some specific solution for problem ${18}"
+
+  euler(problem(18), someSpecificSolution) {
+
+    abstract class Tree
+    case class Branch(top: Int, left: Tree, right: Tree) extends Tree
+    case class Leaf(z: Int) extends Tree
+
+    def maxPath(tree: Tree): List[Int] =
+      tree match {
+        case Leaf(z) =>
+          List(z)
+        case Branch(top, left, right) =>
+          val leftMaxPath = maxPath(left)
+          val rightMaxPath = maxPath(right)
+
+          val leftMax = leftMaxPath.foldLeft(0)(_ + _)
+          val rightMax = rightMaxPath.foldLeft(0)(_ + _)
+
+          if (leftMax <= rightMax) top :: rightMaxPath
+          else top :: leftMaxPath
+      }
+
+    def mkTree(inputRaw: Vector[Vector[String]]): Tree = {
+      if (inputRaw.length == 1) {
+        Leaf(Integer.parseInt(inputRaw(0)(0)))
+      } else if (inputRaw.length == 2) {
+        val top = Integer.parseInt(inputRaw(0)(0))
+        val left = Integer.parseInt(inputRaw(1)(0))
+        val right = Integer.parseInt(inputRaw(1)(1))
+        Branch(top, Leaf(left), Leaf(right))
+      } else if (inputRaw.length >= 3) {
+        val top = Integer.parseInt(inputRaw(0)(0))
+        val left = Integer.parseInt(inputRaw(1)(0))
+        val right = Integer.parseInt(inputRaw(1)(1))
+        val leftInputRaw = inputRaw.drop(2).map { v =>
+          v.reverse.drop(2).reverse
+        }
+        val midInputRaw = inputRaw.drop(2).map { v =>
+          v.drop(1).reverse.drop(1).reverse
+        }
+        val rightInputRaw = inputRaw.drop(2).map { v =>
+          v.drop(2)
+        }
+        val leftTree_ = mkTree(leftInputRaw)
+        val midTree_ = mkTree(midInputRaw)
+        val rightTree_ = mkTree(rightInputRaw)
+        val leftTree = Branch(left, leftTree_, midTree_)
+        val rightTree = Branch(right, midTree_, rightTree_)
+        Branch(top, leftTree, rightTree)
+      } else {
+        sys.error("this should never happen")
+      }
+    }
+
+    maxPath(mkTree(inputRaw)).foldLeft(0)(_ + _)
+
   }
 
   def inputRaw = Vector(

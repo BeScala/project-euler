@@ -3,7 +3,7 @@ package org.bescala.projecteuler.problems
 import org.bescala.projecteuler.EulerSuite
 import org.bescala.projecteuler.ProjectEuler._
 
-class Problem021  extends EulerSuite {
+class Problem021 extends EulerSuite {
 
   /**
    * Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n).
@@ -14,7 +14,23 @@ class Problem021  extends EulerSuite {
    *
    * Evaluate the sum of all the amicable numbers under 10000.
    */
-  euler(problem(21)) {
-    TODO
+  val someSolution = s"some solution for problem ${21}"
+
+  euler(problem(21), someSolution) {
+
+    def sumOfProperDivisorsOf(z: Int) =
+      (1 to z / 2).filter(z % _ == 0).foldLeft(0)(_ + _)
+
+    (2 to 10000).map { z =>
+      val s_z = sumOfProperDivisorsOf(z)
+      val s__s_z = sumOfProperDivisorsOf(s_z)
+      (z, s_z, s__s_z)
+    }.filter {
+      case (z, s_z, s__s_z) =>
+        z == s__s_z && z < s_z
+    }.map {
+      case (z, y, _) => z + y
+    }.foldLeft(0)(_ + _)
+
   }
 }

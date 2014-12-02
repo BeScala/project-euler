@@ -3,6 +3,8 @@ package org.bescala.projecteuler.problems
 import org.bescala.projecteuler.EulerSuite
 import org.bescala.projecteuler.ProjectEuler._
 
+import scala.annotation.tailrec
+
 class Problem025 extends EulerSuite {
 
   /**
@@ -28,7 +30,25 @@ class Problem025 extends EulerSuite {
    *
    * What is the first term in the Fibonacci sequence to contain 1000 digits?
    */
-  euler(problem(25)) {
-    TODO
+  val someSolution = s"some solution for problem ${25}"
+
+  euler(problem(25), someSolution) {
+
+    val fibs: Stream[BigInt] = {
+      def loop(z: BigInt, y: BigInt): Stream[BigInt] =
+        z #:: loop(y, z + y)
+      loop(1, 1)
+    }
+
+    def exp(z: BigInt, e: Int) = {
+      @tailrec
+      def loop(e: Int, x: BigInt): BigInt =
+        if (e == 0) x
+        else loop(e - 1, z * x)
+      loop(e, BigInt(1))
+    }
+
+    fibs.takeWhile(_ < exp(BigInt(10), 999)).length + 1
+
   }
 }

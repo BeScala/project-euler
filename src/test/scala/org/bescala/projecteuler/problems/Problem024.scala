@@ -15,7 +15,10 @@ class Problem024  extends EulerSuite {
    *
    * What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
    */
-  euler(problem(24)) {
-    TODO
+  val someSolution = s"some solution for problem ${24}"
+
+  euler(problem(24), someSolution) {
+    java.lang.Long.parseLong("0123456789".permutations.drop(999999).next)
   }
+
 }

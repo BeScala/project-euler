@@ -9,12 +9,19 @@ class Problem013 extends EulerSuite {
    * Work out the first ten digits of the sum of the following
    * one-hundred 50-digit numbers (see bigNumbers below)
    */
-  euler(problem(13)) {
-    TODO
+  val someSolution = s"some solution for problem ${13}"
+
+  euler(problem(13), someSolution) {
+
+    java.lang.Long.parseLong(bigNumbers.map { z =>
+      BigInt(z)
+    }.foldLeft(BigInt("0")) { (z, y) =>
+      z + y
+    }.toString.take(10))
+
   }
 
-
-  def bigNumbers = Vector (
+  def bigNumbers = Vector(
     "37107287533902102798797998220837590246510135740250",
     "46376937677490009712648124896970078050417018260538",
     "74324986199524741059474233309513058123726617309629",
