@@ -43,7 +43,7 @@ class Problem003 extends EulerSuite {
   }
 
   euler(problem(3), "eloots implicit") {
-    @annotation.tailrec
+    @tailrec
     def largestPrimeFactor(n: Long)(implicit primes: Stream[Long]): Long = {
       if (n == 1) primes.head
       else {
