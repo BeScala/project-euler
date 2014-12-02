@@ -59,14 +59,14 @@ class Problem005 extends EulerSuite {
         }
       }
 
-    def smallestMultipleOfAllNumbersTo(z: Int) =
-      factorizeAllNumbersTo(z).foldLeft(Vector.fill(z)(1)) { (vz, vy) =>
+    def smallestMultipleOfAllNumbersTo2(z: Int) =
+      factorizeAllNumbersTo(z).reduce { (vz, vy) =>
         vz.zip(vy).map {
           case (z, y) => max(z, y)
         }
       }.foldLeft(1)(_ * _)
 
-    smallestMultipleOfAllNumbersTo(20)
+    smallestMultipleOfAllNumbersTo2(20)
 
   }
 

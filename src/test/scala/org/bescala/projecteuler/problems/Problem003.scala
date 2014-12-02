@@ -3,6 +3,9 @@ package org.bescala.projecteuler.problems
 import org.bescala.projecteuler.EulerSuite
 import org.bescala.projecteuler.ProjectEuler._
 
+import scala.annotation.tailrec
+import scala.annotation.tailrec
+
 class Problem003 extends EulerSuite {
   /**
    * The prime factors of 13195 are 5, 7, 13 and 29.
@@ -17,8 +20,20 @@ class Problem003 extends EulerSuite {
     def squareRootOf(z: Long) =
       round(floor(sqrt(z.toDouble)))
 
-    val z = 600851475143L
-    (2L to squareRootOf(z)).filter(y => z % y == 0 && (2L to squareRootOf(y)).forall(y % _ != 0)).last
+    def isPrime(z: Long): Boolean =
+      (2L to squareRootOf(z)).forall(z % _ != 0)
+
+    def natsFrom(z: Long): Stream[Long] = {
+      def loop(z: Long): Stream[Long] =
+        z #:: loop(z + 1)
+      loop(z)
+    }
+
+    val primes =
+      natsFrom(2L).filter(isPrime)
+
+    primes.take(882).filter(600851475143L % _ == 0).toList.last
+
   }
 
 }
