@@ -14,12 +14,12 @@ class Problem003 extends EulerSuite {
   object PrimeFast {
     import scala.collection.mutable.Map
 
-    def fastPrimes() : Stream[Long] = {
-      2 #:: sieve(3, Map{ 9L -> 6L })
+    def fastPrimes: Stream[Long] = {
+      2 #:: sieve(3, Map(9L -> 6L))
     }
 
     private def sieve(p: Long, pQ: Map[Long, Long]): Stream[Long] = {
-      p #:: sieve(nextPrime(p + 2, pQ), pQ )
+      p #:: sieve(nextPrime(p + 2, pQ), pQ)
     }
     private def nextCompositeNumber(x:Long, step: Long, pQ: Map[Long, Long]): Unit = {
       pQ.get(x) match {
@@ -66,13 +66,13 @@ class Problem003 extends EulerSuite {
         else
           largestPrimeFactor_(n, primesToConsider.tail)
       }
-      largestPrimeFactor_(n, PrimeFast.fastPrimes())
+      largestPrimeFactor_(n, PrimeFast.fastPrimes)
     }
     largestPrimeFactor(600851475143L)
   }
 
   euler(problem(3), "cfr eloots but no implicit and with 'mem-leaking'") {
-    val allPrimes = PrimeFast.fastPrimes()
+    val allPrimes = PrimeFast.fastPrimes
     def largestPrimeFactor(n: Long): Long = {
       @tailrec def largestPrimeFactor_(n: Long, primesToConsider: Stream[Long]): Long = {
         val currentPrime = primesToConsider.head
