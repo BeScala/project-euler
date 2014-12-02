@@ -21,21 +21,22 @@ class Problem003 extends EulerSuite {
       loop(z)
     }
 
-    def sieve(stream: Stream[Long], z: Long): Stream[Long] = {
+    def sieve(stream: Stream[Long], z: Long): Long = {
       @tailrec
-      def loop(stream: Stream[Long], y: Long)(acc: Stream[Long]): Stream[Long] = {
+      def loop(stream: Stream[Long], y: Long)(acc: Long): Long = {
         if (y == 1L) {
           acc
         }
         else {
           val p = stream.head
-          loop(stream.filter(_ % p != 0), if (y % p == 0) y / p else y)(p #:: acc)
+          loop(stream.filter(_ % p != 0), if (y % p == 0) y / p else y)(p)
         }
       }
-      loop(stream, z)(Stream())
+      loop(stream, z)(2L)
     }
 
-    sieve(natsFrom(2), 600851475143L).head
+    sieve(natsFrom(2), 600851475143L)
+
   }
 
 }
