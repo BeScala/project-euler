@@ -42,19 +42,19 @@ class Problem007 extends EulerSuite {
 
     def sieve(stream: Stream[Int], l: Int): Int = {
       @tailrec
-      def loop(stream: Stream[Int])(acc: Int, m: Int): Int = {
+      def loop(stream: Stream[Int])(m: Int): Int =
         if (m == 0) {
-          acc
+          stream.head
         }
         else {
           val p = stream.head
-          loop(stream.filter(_ % p != 0))(p, m - 1)
+          loop(stream.filter(_ % p != 0))(m - 1)
         }
-      }
-      loop(stream)(2, l)
+
+      loop(stream)(l)
     }
 
-    sieve(Stream.from(2), 10001)
+    sieve(Stream.from(2), 10000)
 
   }
 

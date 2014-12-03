@@ -52,9 +52,9 @@ class Problem005 extends EulerSuite {
       (2 to z).map { y =>
         allPrimesTo(z).map { p =>
           @tailrec
-          def loop(y: Int)(x: Int): Int =
-            if (y % p != 0) x
-            else loop(y / p)(p * x)
+          def loop(y: Int)(acc: Int): Int =
+            if (y % p != 0) acc
+            else loop(y / p)(p * acc)
           loop(y)(1)
         }
       }

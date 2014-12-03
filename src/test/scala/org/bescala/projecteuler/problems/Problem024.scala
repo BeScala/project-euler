@@ -3,7 +3,7 @@ package org.bescala.projecteuler.problems
 import org.bescala.projecteuler.EulerSuite
 import org.bescala.projecteuler.ProjectEuler._
 
-class Problem024  extends EulerSuite {
+class Problem024 extends EulerSuite {
 
   /**
    * A permutation is an ordered arrangement of objects.
@@ -11,7 +11,7 @@ class Problem024  extends EulerSuite {
    * If all of the permutations are listed numerically or alphabetically, we call it lexicographic order.
    * The lexicographic permutations of 0, 1 and 2 are:
    *
-   *   012   021   102   120   201   210
+   * 012   021   102   120   201   210
    *
    * What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
    */

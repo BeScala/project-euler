@@ -17,26 +17,22 @@ class Problem003 extends EulerSuite {
 
     def sieve(stream: Stream[Int], z: Long): Int = {
 
-      def divideByPowersOf(p: Int)(y: Long) = {
-        @tailrec
-        def loop(acc: Long): Long =
-          if (acc % p == 0) loop(acc / p)
-          else acc
-        loop(y)
-      }
-
-
       @tailrec
-      def loop(stream: Stream[Int], y: Long)(acc: Int): Int =
+      def outerLoop(stream: Stream[Int], y: Long, acc: Int): Int =
         if (y == 1L) {
           acc
         }
         else {
           val p = stream.head
-          loop(stream.filter(_ % p != 0), divideByPowersOf(p)(y))(p)
+          @tailrec
+          def innerLoop(acc: Long): Long =
+            if (acc % p == 0) innerLoop(acc / p)
+            else acc
+
+          outerLoop(stream.filter(_ % p != 0), innerLoop(y), p)
         }
 
-      loop(stream, z)(2)
+      outerLoop(stream, z, stream.head)
     }
 
     sieve(Stream.from(2), 600851475143L)

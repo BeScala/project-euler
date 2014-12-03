@@ -5,7 +5,7 @@ import org.bescala.projecteuler.ProjectEuler._
 
 import scala.annotation.tailrec
 
-class Problem015  extends EulerSuite {
+class Problem015 extends EulerSuite {
 
   /**
    * Starting in the top left corner of a 2×2 grid, and only being able to move to the right and down,
@@ -13,7 +13,7 @@ class Problem015  extends EulerSuite {
    *
    * How many such routes are there through a 20×20 grid?
    */
-//  val bruteForceSolution = s"brute force solution for problem ${15}"
+  //  val bruteForceSolution = s"brute force solution for problem ${15}"
   //
   //  euler(problem(15), bruteForceSolution) {
   //
