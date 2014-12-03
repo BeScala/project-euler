@@ -70,7 +70,7 @@ Bellow we see the output of Problem000.
 [info]   +   Find the sum of all numbers from 1 to 100
 [info]   +   that are NOT multiples of 7
 [info]   + ------------------------------------------------------
-[info]   +
+[info]   + alternative solution
 [info]   + Elapsed time: 8ms
 [info]   + Your solution: 4315
 [info]   +
