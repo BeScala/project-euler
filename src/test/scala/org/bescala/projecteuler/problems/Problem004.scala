@@ -39,8 +39,8 @@ class Problem004 extends EulerSuite {
   val start = 999L
 
   euler(problem(4), "nested loops") {
-    var max = BigInt(1)
     def find(start: BigInt): Long = {
+      var max = BigInt(1)
       for (i <- start to 1 by -1) {
         for (j <- start to i by -1) {
           val n = i * j
