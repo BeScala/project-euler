@@ -15,27 +15,31 @@ class Problem003 extends EulerSuite {
 
   euler(problem(3), someSolution) {
 
-    def natsFrom(z: Long): Stream[Long] = {
-      def loop(z: Long): Stream[Long] =
-        z #:: loop(z + 1)
-      loop(z)
-    }
+    def sieve(stream: Stream[Int], z: Long): Int = {
 
-    def sieve(stream: Stream[Long], z: Long): Long = {
+      def divideByPowersOf(p: Int)(y: Long) = {
+        @tailrec
+        def loop(acc: Long): Long =
+          if (acc % p == 0) loop(acc / p)
+          else acc
+        loop(y)
+      }
+
+
       @tailrec
-      def loop(stream: Stream[Long], y: Long)(acc: Long): Long = {
+      def loop(stream: Stream[Int], y: Long)(acc: Int): Int =
         if (y == 1L) {
           acc
         }
         else {
           val p = stream.head
-          loop(stream.filter(_ % p != 0), if (y % p == 0) y / p else y)(p)
+          loop(stream.filter(_ % p != 0), divideByPowersOf(p)(y))(p)
         }
-      }
-      loop(stream, z)(2L)
+
+      loop(stream, z)(2)
     }
 
-    sieve(natsFrom(2), 600851475143L)
+    sieve(Stream.from(2), 600851475143L)
 
   }
 

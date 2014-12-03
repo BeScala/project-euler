@@ -40,12 +40,6 @@ class Problem007 extends EulerSuite {
 
   euler(problem(7), otherSolution) {
 
-    def natsFrom(z: Int): Stream[Int] = {
-      def loop(z: Int): Stream[Int] =
-        z #:: loop(z + 1)
-      loop(z)
-    }
-
     def sieve(stream: Stream[Int], l: Int): Int = {
       @tailrec
       def loop(stream: Stream[Int])(acc: Int, m: Int): Int = {
