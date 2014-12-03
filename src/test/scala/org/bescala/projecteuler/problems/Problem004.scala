@@ -106,4 +106,45 @@ class Problem004 extends EulerSuite {
     }
     find(start)
   }
+
+  /*
+  euler(problem(4), "PalinSamdrome") {
+    object PalinSamdrome {
+      val N = 99999999
+      val N2 = (N * N).toString
+      val palindrome: (Long, Long, Long) =
+        if (N2 == N2.reverse) (N * N, N, N)
+        else {
+          (Iterator.from(N, -1)
+            .map { n => (n - 1, n)}
+            .flatMap { case (n1, n2) =>
+              (0L to 1) flatMap { deltaOne =>
+              (0L to N - n2 + deltaOne) map { d2 => (n1 - d2, n2 - deltaOne + d2)}
+            }
+          })
+            .map { case (n1, n2) => (n1 * n2, n1, n2)}
+            .find { case (palindromeCandidate, _, _) => palindromeCandidate.toString == palindromeCandidate.toString.reverse}
+            .get
+        }
+    }
+    //println(PalinSamdrome.palindrome.toString)
+    PalinSamdrome.palindrome._1
+  }
+  */
+
+  euler(problem(4), "Sam's PalinSamdrome") {
+    def find(start: Long) = {
+      (for {
+        n2 <- Iterator.from(start.toInt, -1)
+        n1 = n2 - 1
+        deltaOne <- 0L to 1
+        d2 <- 0L to (start - n2 + deltaOne)
+        i = n1 - d2
+        j = n2 - deltaOne + d2
+      } yield i * j)
+        .find(p => p.toString == p.toString.reverse)
+        .get
+    }
+    find(start)
+  }
 }
