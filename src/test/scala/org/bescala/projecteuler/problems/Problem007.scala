@@ -32,7 +32,7 @@ class Problem007 extends EulerSuite {
     val primes =
       natsFrom(2).filter(isPrime)
 
-    primes.take(10001).last
+    primes(10000)
 
   }
 
@@ -60,7 +60,7 @@ class Problem007 extends EulerSuite {
       loop(stream)(2, l)
     }
 
-    sieve(natsFrom(2), 10001)
+    sieve(Stream.from(2), 10001)
 
   }
 
