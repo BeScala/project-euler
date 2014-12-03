@@ -51,7 +51,7 @@ class Problem003 extends EulerSuite {
         else largestPrimeFactor(n)(primes.tail)
       }
     }
-    implicit val myFavoritePrimes_NameDoesntMatter = PrimeFast.fastPrimes()
+    implicit val myFavoritePrimes_NameDoesntMatter = PrimeFast.fastPrimes
     largestPrimeFactor(600851475143L)
   }
 
