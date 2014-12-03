@@ -12,6 +12,7 @@ class Euler extends Spec {
       new Problem000,
       new Problem001,
       new Problem003,
+      new Problem004,
       new Problem005,
       new Problem006,
       new Problem007,
