@@ -47,4 +47,8 @@ class Problem001 extends EulerSuite {
     result
   }
 
+  euler(problem(1), "view and filter") {
+    (1 until 1000).view.filter(l => l % 3 == 0 || l % 5 == 0).sum
+  }
+
 }
