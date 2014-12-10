@@ -30,4 +30,21 @@ class Problem001 extends EulerSuite {
     calculate(1)
   }
 
+  euler(problem(1), "tdeconin") {
+    val upperLimit = 1000
+    val divisors = Seq(3,5)
+    Stream.from(1)
+      .takeWhile(i => i < upperLimit)
+      .foldLeft (0) {
+      case (acc, i) if (divisors.exists{ d => (i % d) == 0 }) => acc + i
+      case (acc, _) => acc
+    }
+  }
+
+  euler(problem(1), "withFilter") {
+    var result = 0
+    (1 until 1000).withFilter(l => l % 3 == 0 || l % 5 == 0).foreach(result += _)
+    result
+  }
+
 }
