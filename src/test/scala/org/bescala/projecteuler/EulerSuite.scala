@@ -28,7 +28,7 @@ class EulerSuite extends FunSuite {
         info(s"  $line")
       }
       info("------------------------------------------------------")
-      info("")
+      info(alternative)
       val t0 = System.nanoTime()
       val result = solution
       val t1 = System.nanoTime()
