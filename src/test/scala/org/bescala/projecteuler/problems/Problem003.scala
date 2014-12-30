@@ -2,6 +2,7 @@ package org.bescala.projecteuler.problems
 
 import org.bescala.projecteuler.EulerSuite
 import org.bescala.projecteuler.ProjectEuler._
+import org.bescala.projecteuler._
 
 class Problem003 extends EulerSuite {
   /**
@@ -9,6 +10,6 @@ class Problem003 extends EulerSuite {
    * What is the largest prime factor of the number 600851475143?
    */
   euler(problem(3)) {
-    TODO
+    primeFactors(600851475143L).max
   }
 }

@@ -29,6 +29,19 @@ class Problem025 extends EulerSuite {
    * What is the first term in the Fibonacci sequence to contain 1000 digits?
    */
   euler(problem(25)) {
-    TODO
+
+    def fiboStop(f: BigDecimal => Boolean): Int = {
+      def fibonacciAcc(f: BigDecimal => Boolean, n: Int, f_n_1: BigDecimal, f_n: BigDecimal): Int = {
+        if (f(f_n)) n
+        else fibonacciAcc(f, n + 1, f_n, f_n + f_n_1)
+      }
+      fibonacciAcc(f, 0, 1, 0)
+    }
+    
+    def check(x: BigDecimal): Boolean = {
+      x.toString().length == 1000
+    }
+    
+    fiboStop(check)
   }
 }

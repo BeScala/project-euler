@@ -3,6 +3,8 @@ package org.bescala.projecteuler.problems
 import org.bescala.projecteuler.EulerSuite
 import org.bescala.projecteuler.ProjectEuler._
 
+import scala.collection.mutable.ArrayBuffer
+
 class Problem018  extends EulerSuite {
 
   /**
@@ -38,8 +40,40 @@ class Problem018  extends EulerSuite {
    * However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot
    * be solved by brute force, and requires a clever method! ;o)
    */
+  // Java way
   euler(problem(18)) {
-    TODO
+    val ret = new ArrayBuffer[Int]
+    for (row <- inputRaw.reverse) {
+      if(ret.isEmpty) {
+        for (i <- row) {
+          ret += i.toInt
+        }
+      }
+      else {
+        for (i <- 0 to row.length - 1) {
+          ret.update(i, Math.max(row(i).toInt + ret(i),row(i).toInt + ret(i+1)))
+        }
+        ret.trimEnd(1)
+      }
+    }
+    ret(0)
+  }
+
+
+  euler(problem(18), "Alt #1, More Scala-ish") {
+
+    def largestSumInPyramid(p: Vector[Vector[String]]) : Long = {
+      def computeLine(l: Vector[String], out: Vector[Int]): Vector[Int] = {
+        out.tail.zip(out.dropRight(1)).zip(l.map(_.toInt)).map(x => Math.max(x._2 + x._1._1,x._2 + x._1._2))
+      }
+      def reducePyramid(v: Vector[Vector[String]], out: Vector[Int]): Vector[Int] = {
+        if (v.isEmpty) out
+        else reducePyramid(v.dropRight(1), computeLine(v.last, out))
+      }
+      reducePyramid(p.dropRight(1), p.last.map(_.toInt)).head.toLong
+    }
+
+    largestSumInPyramid(inputRaw)
   }
 
   def inputRaw = Vector(

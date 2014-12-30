@@ -12,6 +12,23 @@ class Problem015  extends EulerSuite {
    * How many such routes are there through a 20×20 grid?
    */
   euler(problem(15)) {
-    TODO
+    latticeCount(20,20)
+  }
+
+  /**
+   *  
+   * @param r an integer: the number of rows in a lattice
+   * @param c an integer: the number of columns in a lattice
+   * @return the numbers of paths from the top left corner to the bottom right corner when moving only 
+   *         right and down
+   *
+   */
+  def latticeCount(r: Int, c: Int): Long = {
+    def latticeAcc(r: Int, c: Int, acc: Long): Long = {
+      if (r == 0 && c == 0) 0
+      else if (r == 0 || c == 0) 1
+      else latticeAcc(r, c-1, acc+1) + latticeAcc(r-1, c, acc+1)
+    }
+    latticeAcc(r, c, 0)
   }
 }

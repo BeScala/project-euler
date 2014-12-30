@@ -2,6 +2,7 @@ package org.bescala.projecteuler.problems
 
 import org.bescala.projecteuler.EulerSuite
 import org.bescala.projecteuler.ProjectEuler._
+import org.bescala.projecteuler._
 
 class Problem021  extends EulerSuite {
 
@@ -15,6 +16,12 @@ class Problem021  extends EulerSuite {
    * Evaluate the sum of all the amicable numbers under 10000.
    */
   euler(problem(21)) {
-    TODO
+    def isAmicable(a: Int): Boolean = {
+      var d_a = sumOfDivisors(a)
+      var d_b = sumOfDivisors(d_a)
+      (a == d_b) && (d_a != d_b)
+    }
+
+    (1 to 9999).filter(i => isAmicable(i)).sum
   }
 }

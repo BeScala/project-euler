@@ -10,7 +10,11 @@ class Problem013 extends EulerSuite {
    * one-hundred 50-digit numbers (see bigNumbers below)
    */
   euler(problem(13)) {
-    TODO
+    var ret: BigDecimal = 0
+    for (v <- bigNumbers) {
+      ret += BigDecimal.apply(v)
+    }
+    ret.toString().substring(0, 10).toLong
   }
 
 

@@ -10,6 +10,6 @@ class Problem006 extends EulerSuite {
    * the first one hundred natural numbers and the square of the sum
    */
   euler(problem(6)) {
-    TODO
+    (Math.pow((1 to 100).sum,2) - (1 to 100).map(x => Math.pow(x, 2)).sum).toLong
   }
 }

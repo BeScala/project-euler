@@ -24,7 +24,21 @@ class Problem004 extends EulerSuite {
   *find a good strategy. The 'fast' solution doesn't require tons of math...
   *
   */
-  euler(problem(4)) {
-    TODO
+  euler(problem(4), "vrobinho: the Java way") {
+    var ret = 0
+    var prod: Int= 0
+    for (j <- 100 to 999 ; i <- 100 to 999) {
+      prod = j * i
+      ret = if(isPalindromic(prod.toString) && prod > ret) prod else ret
+    }
+    ret
+  }
+
+  euler(problem(4), "vrobinho: more Scala minded but not optimal") {
+    (1 to 999).combinations(2).toList.map(x => x(0) * x(1)).filter{x => isPalindromic(x.toString)}.max
+  }
+  
+  def isPalindromic(s: String): Boolean = {
+    s == s.reverse
   }
 }

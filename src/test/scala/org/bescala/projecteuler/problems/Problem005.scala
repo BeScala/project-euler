@@ -32,7 +32,44 @@ class Problem005 extends EulerSuite {
    * 20 = 2 * 2 * 5     // already covered if we cover previous cases
    */
   euler(problem(5)) {
-    TODO
+    var i: Int = 0
+    do {
+      i += 1
+    } while (! isDivisible(i, (1 to 20).toList))
+    i
+  }
+
+  euler(problem(5), "Alt #1") {
+    findSmallestDivisibleBy((1 to 20).toList)
+  }
+
+  /**
+   *
+   * @param n an integer
+   * @param l a list of integer
+   * @return true is n divides evenly in each integer contained in l
+   *         false otherwise
+   *
+   */
+  def isDivisible(n: Int, l: List[Int]) : Boolean = {
+    def isDivisibleAcc(n: Int, l: List[Int], b: Boolean) : Boolean = {
+      if (l.isEmpty || !b) b
+      else isDivisibleAcc(n, l.tail, b && (n % l.head == 0))
+    }
+    isDivisibleAcc(n, l, b = true)
+  }
+
+  /**
+   *
+   * @param l a list of integers
+   * @return the smallest natural number that divides evenly in each integer contained in l
+   */
+  def findSmallestDivisibleBy(l: List[Int]) : Long = {
+    def find(n: Int, l: List[Int]) : Long = {
+      if (isDivisible(n, l)) n
+      else find(n+1,l)
+    }
+    find(1, l)
   }
 
 }
