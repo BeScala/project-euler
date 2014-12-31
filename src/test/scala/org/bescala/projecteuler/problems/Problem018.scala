@@ -64,16 +64,20 @@ class Problem018  extends EulerSuite {
 
     def largestSumInPyramid(p: Vector[Vector[String]]) : Long = {
       def computeLine(l: Vector[String], out: Vector[Int]): Vector[Int] = {
-        out.tail.zip(out.dropRight(1)).zip(l.map(_.toInt)).map(x => Math.max(x._2 + x._1._1,x._2 + x._1._2))
+        out.tail.zip(out.init).map(x => Math.max(x._1, x._2)).zip(l.map(_.toInt))map(x => x._1 + x._2)
       }
       def reducePyramid(v: Vector[Vector[String]], out: Vector[Int]): Vector[Int] = {
         if (v.isEmpty) out
-        else reducePyramid(v.dropRight(1), computeLine(v.last, out))
+        else reducePyramid(v.init, computeLine(v.last, out))
       }
-      reducePyramid(p.dropRight(1), p.last.map(_.toInt)).head.toLong
+      reducePyramid(p.init, p.last.map(_.toInt)).head.toLong
     }
 
     largestSumInPyramid(inputRaw)
+  }
+  
+  euler(problem(18), "One-liner using reduceRight") {
+    inputRaw.reduceRight((l, r) => r.tail.zip(r.init).map(x => Math.max(x._1.toInt, x._2.toInt)).zip(l.map(_.toInt)).map(x => (x._1 + x._2).toString)).head.toLong
   }
 
   def inputRaw = Vector(
