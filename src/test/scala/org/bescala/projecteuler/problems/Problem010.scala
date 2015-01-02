@@ -17,4 +17,20 @@ class Problem010 extends EulerSuite {
     }
     sum
   }
+  euler(problem(10), "FoldRight") {
+    (1 until 2000000).foldRight(0L) { (l, acc) => if (isPrime(l)) acc + l else acc}
+  }
+  
+  euler(problem(10), "Tail-rec") {
+    def sumPrimes(n: Int): Long = {
+      def sumPrimes(n:Int, acc: Long) : Long = {
+        if(n == 0) acc
+        else if (isPrime(n)) sumPrimes(n-1, acc+n)
+        else sumPrimes(n-1, acc)
+        
+      }
+      sumPrimes(n,0L)
+    } 
+    sumPrimes(2000000)
+  }
 }
