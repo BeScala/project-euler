@@ -77,7 +77,7 @@ class Problem018  extends EulerSuite {
   }
   
   euler(problem(18), "One-liner using reduceRight") {
-    inputRaw.reduceRight((l, r) => r.tail.zip(r.init).map(x => Math.max(x._1.toInt, x._2.toInt)).zip(l.map(_.toInt)).map(x => (x._1 + x._2).toString)).head.toLong
+    inputRaw.reduceRight((l, r) => r.tail.zip(r.init).map{case(x,y) => Math.max(x.toInt,y.toInt)}.zip(l.map(_.toInt)).map{case(x,y) => (x+y).toString}).head.toLong
   }
 
   def inputRaw = Vector(
