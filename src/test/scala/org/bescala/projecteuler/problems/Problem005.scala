@@ -81,14 +81,15 @@ class Problem005 extends EulerSuite {
      */
     def isDivisible(n: Int, l: List[Int]) : Boolean = {
 
+      @tailrec
       def isDivisibleAcc(dividends: List[Int], isDivisible: Boolean = true) : Boolean = {
 
-        def runDivisions = dividends match {
+        dividends match {
           case Nil => isDivisible
-          case divisor :: others => isDivisibleAcc(others, n % divisor == 0)
+          case divisor :: others =>
+            val dividedEvenly = n % divisor == 0
+            isDivisibleAcc(others, isDivisible && dividedEvenly)
         }
-
-        isDivisible && runDivisions
       }
 
       isDivisibleAcc(l)
