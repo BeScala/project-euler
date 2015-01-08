@@ -81,12 +81,12 @@ class Problem005 extends EulerSuite {
      */
     def isDivisible(n: Int, l: List[Int]) : Boolean = {
 
-      def isDivisibleAcc(l: List[Int], b: Boolean) : Boolean = {
+      def isDivisibleAcc(l: List[Int], b: Boolean = true) : Boolean = {
         if (l.isEmpty || !b) b
         else isDivisibleAcc(l.tail, b && (n % l.head == 0))
       }
 
-      isDivisibleAcc(l, b = true)
+      isDivisibleAcc(l)
     }
 
     /**
