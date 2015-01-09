@@ -1,11 +1,13 @@
 package org.bescala.projecteuler.problems
 
-
-
 import org.bescala.projecteuler.EulerSuite
 import org.bescala.projecteuler.ProjectEuler._
 
-class Problem004 extends EulerSuite {
+trait TestParams004 {
+  val N = 999
+}
+
+class Problem004 extends EulerSuite with TestParams004 {
 
  /**
   * A palindromic number reads the same both ways. The largest palindrome made from the product
@@ -26,7 +28,6 @@ class Problem004 extends EulerSuite {
   *
   */
 
-
   euler(problem(4), "eloots-1 - reduce search space") {
     def largestPalindrome(nMax: Long): Long = {
       // General strategy: try to reduce the search space
@@ -38,13 +39,13 @@ class Problem004 extends EulerSuite {
         def testlp(n: Long): Long = {
           val n2 = n * n
           if (n2.toString == n2.toString.reverse) {
-            println(n); n2
+            /* println(n) ;*/ n2
           }
           else testlp(n - 1)
         }
 
         val lsp = testlp(number)
-        println(s"lsp = $lsp")
+        // println(s"lsp = $lsp")
         lsp
       }
       // find largest palindrome from product of two identical numbers
@@ -60,7 +61,7 @@ class Problem004 extends EulerSuite {
 
     }
 
-    largestPalindrome(999)
+    largestPalindrome(N)
   }
 
   euler(problem(4), "eloots-2 - search by starting from palindromes") {
@@ -151,10 +152,11 @@ class Problem004 extends EulerSuite {
       p
     }
 
-    largestPalindrome(999)
+    largestPalindrome(N)
   }
 
-  euler(problem(4), "eloots-3 - search in more optimal way") {
+  euler(problem(4), "eloots-3a - search in more optimal way - Return val in Tuple with 3 Long") {
+
     def largestPalindrome(n: Long, range: Long =  100, pRange: Long = 0): (Long, Long, Long) = {
       val candidatesNewXPrev = for {
         nNew  <- n - pRange until n - range  by -1
@@ -170,19 +172,53 @@ class Problem004 extends EulerSuite {
         if posPalindrome == posPalindrome.reverse
       } yield (posPalindrome.toLong, nNew2, nNew)
 
-      val interm = (candidatesNewXPrev ++ candidatesNewXNew).sortBy { case (num, _, _) => -num }
+      val intermediateResult = (candidatesNewXPrev ++ candidatesNewXNew).sortBy { case (num, _, _) => -num }
 
-      if (interm.isEmpty) {
+      if (intermediateResult.isEmpty) {
         largestPalindrome(n, range + 100, range)
-      } else interm.head
+      } else intermediateResult.head
     }
 
     // This version of largestPalindrome generates a 3-element
     // tuple with the palindrome as the first element
-    largestPalindrome(999)._1
+    val (lp, _, _) = largestPalindrome(N)
+    lp
   }
 
-  euler(problem(4), "eloots-3a - same as eloots-3 but refactored") {
+  euler(problem(4), "eloots-3b - search in more optimal way - Use type alias for clarity") {
+    type Palindrome = Long
+    type Divider1   = Long
+    type Divider2   = Long
+
+    def largestPalindrome(n: Long, range: Long =  100, pRange: Long = 0): (Palindrome, Divider1, Divider2) = {
+      val candidatesNewXPrev = for {
+        nNew  <- n - pRange until n - range  by -1
+        nPrev <- n          until n - pRange by -1
+        posPalindrome = (nNew * nPrev).toString
+        if posPalindrome == posPalindrome.reverse
+      } yield (posPalindrome.toLong, nNew, nPrev)
+
+      val candidatesNewXNew = for {
+        nNew  <- n - pRange until n - range by -1
+        nNew2 <- nNew       until n - range by -1
+        posPalindrome = (nNew * nNew2).toString
+        if posPalindrome == posPalindrome.reverse
+      } yield (posPalindrome.toLong, nNew2, nNew)
+
+      val intermediateResult = (candidatesNewXPrev ++ candidatesNewXNew).sortBy { case (num, _, _) => -num }
+
+      if (intermediateResult.isEmpty) {
+        largestPalindrome(n, range + 100, range)
+      } else intermediateResult.head
+    }
+
+    // This version of largestPalindrome generates a 3-element
+    // tuple with the palindrome as the first element
+    val (lp, _, _) = largestPalindrome(N)
+    lp
+  }
+
+  euler(problem(4), "eloots-3c - search in more optimal way - Use case classes for clarity") {
      
     case class PalindromeAndDividers(palindrome: Long, divider1: Long, divider2: Long)
 
@@ -190,16 +226,18 @@ class Problem004 extends EulerSuite {
       val candidatesNewXPrev = for {
         nNew  <- n - pRange until n - range  by -1
         nPrev <- n          until n - pRange by -1
-        posPalindrome = (nNew * nPrev).toString
-        if posPalindrome == posPalindrome.reverse
-      } yield PalindromeAndDividers(posPalindrome.toLong, nNew, nPrev)
+        posPalindrome = nNew * nPrev
+        posPalindromeStr = posPalindrome.toString
+        if posPalindromeStr == posPalindromeStr.reverse
+      } yield PalindromeAndDividers(posPalindrome, nNew, nPrev)
 
       val candidatesNewXNew = for {
         nNew  <- n - pRange until n - range by -1
         nNew2 <- nNew       until n - range by -1
-        posPalindrome = (nNew * nNew2).toString
-        if posPalindrome == posPalindrome.reverse
-      } yield PalindromeAndDividers(posPalindrome.toLong, nNew2, nNew)
+        posPalindrome = nNew * nNew2
+        posPalindromeStr = posPalindrome.toString
+        if posPalindromeStr == posPalindromeStr.reverse
+      } yield PalindromeAndDividers(posPalindrome, nNew2, nNew)
 
       val palindromes = (candidatesNewXPrev ++ candidatesNewXNew).sortBy { case PalindromeAndDividers(num, _, _) => -num }
 
@@ -208,7 +246,8 @@ class Problem004 extends EulerSuite {
       } else palindromes.head
     }
 
-    largestPalindrome(999).palindrome
+    val PalindromeAndDividers(palindrome, div1, div2) = largestPalindrome(N)
+    palindrome
   }
 
 }
