@@ -28,7 +28,11 @@ class Problem009  extends EulerSuite {
    *  Because a and b are positive integers => divider in the above equation has to divide evenly into
    *  the numerator -and- 1000^2 - 2000 * b has to be positive
    */
-  euler(problem(9)) {
-    TODO
+  euler(problem(9), "Eric") {
+    val bs = (1 to 999) filter (b => (500 * 1000 - 1000 * b) % (1000 - b) == 0 && 1000 * 1000 - 2000 * b > 0)
+    val a = bs(0)
+    val b = bs(1)
+    val c = 1000 - a - b
+    a * b * c
   }
 }
