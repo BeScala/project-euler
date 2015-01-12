@@ -20,26 +20,27 @@ trait Range {
   def filterFunc = (n:Int) => true
   def withFilter(filter: (Int) => Boolean) : Range
 
-  def sum: Int = {
-    @tailrec
-    def loop(num:Int, acc:Int) : Int = {
-      if (num > end) acc
-      else if (num == end) num + acc
-      else loop(next(num), num + acc)
-    }
 
-    loop(begin, 0)
+  def sum: Int = foldLeftMonoid(IntAddMonoid)(identity)
+
+  def toList: List[Int] = foldLeftMonoid(ListIntMonoid) { n => List(n) }
+
+  private def foldLeftMonoid[T](monoid:Monoid[T])(builder: (Int) => T) : T = {
+    foldLeft(monoid.zero) { (acc, num) =>
+      monoid.append(acc, builder(num))
+    }
   }
 
-  def toList : List[Int] = {
+  def foldLeft[T](z: T)(op: (T, Int) => T) : T = {
+
     @tailrec
-    def loop(num:Int, acc:List[Int]) : List[Int] = {
+    def loop(num:Int, acc:T) : T = {
       if (num > end) acc
-      else if (num == end) acc :+ num
-      else loop(next(num), acc :+ num)
+      else if (num == end) op(acc, num)
+      else loop(next(num), op(acc, num))
     }
 
-    loop(begin, List())
+    loop(begin, z)
   }
 
 
@@ -101,4 +102,22 @@ case class FilteredRange(range:Range, override val filterFunc : Int => Boolean) 
     FilteredRange(this, newFilter)
   }
 
+}
+
+
+
+
+trait Monoid[T] {
+  def zero:T
+  def append(n:T, a:T) : T
+}
+
+object IntAddMonoid extends Monoid[Int] {
+  def zero = 0
+  def append(left:Int, right:Int) = left + right
+}
+
+object ListIntMonoid extends Monoid[List[Int]] {
+  def zero = List[Int]()
+  def append(left:List[Int], right:List[Int]) = left ++ right
 }
