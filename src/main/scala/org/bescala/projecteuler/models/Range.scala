@@ -15,6 +15,8 @@ trait Range {
   val begin:Int
   val end:Int
 
+  assert(begin <= end, "The beginning of Range must be before or equal to its end")
+  
   def sum: Int = {
     @tailrec
     def loop(num:Int, acc:Int) : Int = {
