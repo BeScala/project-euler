@@ -14,9 +14,12 @@ trait Range {
 
   val begin:Int
   val end:Int
-
   assert(begin <= end, "The beginning of Range must be before or equal to its end")
-  
+
+  // by default returns always true
+  def filterFunc = (n:Int) => true
+  def withFilter(filter: (Int) => Boolean) : Range
+
   def sum: Int = {
     @tailrec
     def loop(num:Int, acc:Int) : Int = {
@@ -39,8 +42,42 @@ trait Range {
     loop(begin, List())
   }
 
-  protected def next(n:Int) : Int = n + 1
-  protected def previous(n:Int) : Int = n - 1
+
+  override def toString = s"Range(begin = $begin, end = $end)"
+
+  protected def next(n:Int) : Int = {
+
+    @tailrec
+    def incAndFilter(n:Int) : Int = {
+
+      val incremented = n + 1
+
+      if (filterFunc(incremented)) {
+        incremented
+      } else {
+        incAndFilter(incremented)
+      }
+    }
+
+    incAndFilter(n)
+  }
+
+  def previous(n:Int) : Int = {
+
+    @tailrec
+    def incAndFilter(n:Int) : Int = {
+
+      val decremented = n - 1
+
+      if (filterFunc(decremented)) {
+        decremented
+      } else {
+        incAndFilter(decremented)
+      }
+    }
+
+    incAndFilter(n)
+  }
 
 
 }
@@ -49,5 +86,19 @@ object Range {
   def apply(start: Int, end: Int) = TotalRange(start, end)
 }
 
-case class TotalRange(begin:Int, end:Int) extends Range
+case class TotalRange(begin:Int, end:Int) extends Range {
+  def withFilter(filter: (Int) => Boolean) : Range = FilteredRange(this, filter)
+}
 
+
+case class FilteredRange(range:Range, override val filterFunc : Int => Boolean) extends Range {
+
+  val begin = if (filterFunc(range.begin)) range.begin else next(range.begin)
+  val end = if(filterFunc(range.end)) range.end else previous(range.end)
+
+  def withFilter(filter: (Int) => Boolean) : Range = {
+    val newFilter = (n:Int) => filterFunc(n) && filter(n)
+    FilteredRange(this, newFilter)
+  }
+
+}
