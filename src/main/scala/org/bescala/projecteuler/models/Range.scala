@@ -84,7 +84,12 @@ trait Range {
 }
 
 object Range {
-  def apply(start: Int, end: Int) = TotalRange(start, end)
+  def apply(start: Int, end: Int) : Range = TotalRange(start, end)
+
+  def from(start:Int) = new  {
+    def to(end:Int) : Range = TotalRange(start, end)
+    def until(end:Int) : Range = TotalRange(start, end - 1)
+  }
 }
 
 case class TotalRange(begin:Int, end:Int) extends Range {

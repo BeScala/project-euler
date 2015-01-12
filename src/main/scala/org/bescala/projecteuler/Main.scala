@@ -4,8 +4,15 @@ import org.bescala.projecteuler.models.Range
 
 object Main extends App {
 
-  val range = Range(1, 10).withFilter(n => n % 5  == 0 || n % 3 == 0 )
+  val range = Range.from(1).to(10)
   show(range)
 
-  def show(range:Range) = println(s"list: ${range.toList} => sum: ${range.sum} ")
+  val filtered = range.withFilter { n =>
+      n % 2 == 0 || n == 1
+    }
+
+  show(filtered)
+
+  def show(range:Range) = println(s"$range => list: ${range.toList} => sum: ${range.sum} ")
+
 }
